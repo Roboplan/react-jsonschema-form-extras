@@ -10,8 +10,8 @@ const debounce = require("lodash.debounce");
 
 export default class DraftRTE extends Component {
   /**
-   * 
-   * @param {*} props 
+   *
+   * @param {*} props
    * Currently only supports HTML
    */
   constructor(props) {
@@ -86,7 +86,9 @@ export default class DraftRTE extends Component {
    * handles the logic to update formData on blur
    */
   handleBlur = () => {
-    let { uiSchema: { updateOnBlur = false } } = this.props;
+    let {
+      uiSchema: { updateOnBlur = false },
+    } = this.props;
     if (updateOnBlur) {
       this.updateFormData();
     }
@@ -104,7 +106,10 @@ export default class DraftRTE extends Component {
    */
   render() {
     const { editorState } = this.state;
-    let { uiSchema: { draftRte }, idSchema: { $id } = {} } = this.props;
+    let {
+      uiSchema: { draftRte },
+      idSchema: { $id } = {},
+    } = this.props;
 
     return (
       <div id={$id}>

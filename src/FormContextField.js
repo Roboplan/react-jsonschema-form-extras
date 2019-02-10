@@ -6,7 +6,10 @@ export default class FormContextField extends Component {
   }
 
   render() {
-    let { formContext, uiSchema: { actions } } = this.props;
+    let {
+      formContext,
+      uiSchema: { actions },
+    } = this.props;
     const Component = formContext["allActions"][actions[0].component];
 
     return (

@@ -21,7 +21,8 @@ class CollapseMenuAction extends Component {
         );
         return (
           <h2 className="warning bg-error" style={{ color: "red" }}>
-            Can't find <b>{action.component}</b> in <b>formContext</b>.<b>allActions</b>
+            Can't find <b>{action.component}</b> in <b>formContext</b>.
+            <b>allActions</b>
           </h2>
         );
       }
@@ -116,7 +117,9 @@ function CollapseMenu(props) {
 class CollapseLegend extends Component {
   render() {
     let {
-      uiSchema: { collapse: { legend } },
+      uiSchema: {
+        collapse: { legend },
+      },
       formContext: { legends = {} } = {},
     } = this.props;
     if (!legend) {
@@ -130,7 +133,8 @@ class CollapseLegend extends Component {
         console.error(`Can't find ${legend.components} in formContext.legends`);
         return (
           <h2 className="warning bg-error" style={{ color: "red" }}>
-            Can't find <b>{legend.component}</b> in <b>formContext</b>.<b>legends</b>
+            Can't find <b>{legend.component}</b> in <b>formContext</b>.
+            <b>legends</b>
           </h2>
         );
       }
@@ -144,13 +148,17 @@ class CollapsibleField extends Component {
   constructor(props) {
     super(props);
 
-    let { uiSchema: { collapse: { collapsed = true } = {} } } = props;
+    let {
+      uiSchema: { collapse: { collapsed = true } = {} },
+    } = props;
 
     this.state = { collapsed };
   }
 
   appendToArray = (formData = [], newVal) => {
-    let { uiSchema: { collapse: { addToBottom = true } = {} } } = this.props;
+    let {
+      uiSchema: { collapse: { addToBottom = true } = {} },
+    } = this.props;
     if (formData.some(v => deepEquals(v, newVal))) {
       return formData;
     } else {
@@ -176,15 +184,24 @@ class CollapsibleField extends Component {
   handleAdd = () => {
     this.setState({ collapsed: false });
     this.forceUpdate(() => {
-      let { schema, uiSchema, formData, registry: { fields } } = this.props;
-      let { collapse: { addTo, addElement } } = uiSchema;
+      let {
+        schema,
+        uiSchema,
+        formData,
+        registry: { fields },
+      } = this.props;
+      let {
+        collapse: { addTo, addElement },
+      } = uiSchema;
 
       let fieldSchema =
         addTo === "self"
           ? schema.items
           : schema.properties
-            ? schema.properties[addTo] ? schema.properties[addTo].items : null
-            : null;
+          ? schema.properties[addTo]
+            ? schema.properties[addTo].items
+            : null
+          : null;
       if (!fieldSchema) {
         return false;
       }
@@ -238,7 +255,9 @@ class CollapsibleField extends Component {
       formContext,
     } = this.props;
     let { collapsed, AddElement } = this.state;
-    let { collapse: { field } } = uiSchema;
+    let {
+      collapse: { field },
+    } = uiSchema;
     let CollapseElement = fields[field];
     // uischema retains the value form the state
     uiSchema.collapse.collapsed = this.state.collapsed;

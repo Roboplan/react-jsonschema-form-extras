@@ -10,7 +10,10 @@ export default class SimpleLabel extends Component {
   }
 
   componentDidMount() {
-    let { schema: { title }, name } = this.props;
+    let {
+      schema: { title },
+      name,
+    } = this.props;
 
     this.setState({
       label: title ? title : name,

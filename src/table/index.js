@@ -69,8 +69,12 @@ class TableField extends Component {
     this.handleRowSelect = this.handleRowSelect.bind(this);
   }
   handleDeletedRow(row, rowIdx, c) {
-    let { items: { defaultFilterKey = undefined } } = this.props.schema;
-    let { table: { rightActions } } = this.props.uiSchema;
+    let {
+      items: { defaultFilterKey = undefined },
+    } = this.props.schema;
+    let {
+      table: { rightActions },
+    } = this.props.uiSchema;
 
     let highlightRow = "";
     if (rightActions) {
@@ -100,8 +104,8 @@ class TableField extends Component {
     }
 
     const targetKey = updRow[keyField];
-    let updTable = data.map(
-      row => (row[keyField] === targetKey ? updRow : row)
+    let updTable = data.map(row =>
+      row[keyField] === targetKey ? updRow : row
     );
 
     /* Number field Validation => if Number is Undefined Or Empty, it should removed from the FormData */
@@ -133,7 +137,9 @@ class TableField extends Component {
   handleRowSelect(row, isSelected, e) {
     const {
       data,
-      selectRow: { onSelectRow: { fieldToUpdate = "picked" } },
+      selectRow: {
+        onSelectRow: { fieldToUpdate = "picked" },
+      },
     } = this.tableConf;
     let filteredRows = (data || []).map(item => {
       if (!isSelected && item[fieldToUpdate] !== undefined) {
@@ -147,7 +153,9 @@ class TableField extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let { uiSchema: { table: { focusOnAdd } = {} } } = nextProps;
+    let {
+      uiSchema: { table: { focusOnAdd } = {} },
+    } = nextProps;
 
     this.adding =
       focusOnAdd !== undefined &&
@@ -159,7 +167,11 @@ class TableField extends Component {
 
   componentDidUpdate() {
     if (this.adding) {
-      let { uiSchema: { table: { focusOnAdd, focusRowIndex } } } = this.props;
+      let {
+        uiSchema: {
+          table: { focusOnAdd, focusRowIndex },
+        },
+      } = this.props;
 
       let body = this.refs.table.refs.body
         ? this.refs.table.refs.body

@@ -31,19 +31,26 @@ export default class RTEField extends Component {
   };
 
   handleChange = value => {
-    let { uiSchema: { updateOnBlur = false } } = this.props;
+    let {
+      uiSchema: { updateOnBlur = false },
+    } = this.props;
     this.setState({ value }, () => !updateOnBlur && this.updateFormData());
   };
 
   handleBlur = () => {
-    let { uiSchema: { updateOnBlur = false } } = this.props;
+    let {
+      uiSchema: { updateOnBlur = false },
+    } = this.props;
     if (updateOnBlur) {
       this.updateFormData();
     }
   };
 
   render() {
-    let { uiSchema: { rte }, idSchema: { $id } = {} } = this.props;
+    let {
+      uiSchema: { rte },
+      idSchema: { $id } = {},
+    } = this.props;
     let autoFocus = this.props.uiSchema["ui:autofocus"];
 
     return (

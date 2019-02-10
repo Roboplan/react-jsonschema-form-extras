@@ -29,7 +29,11 @@ export default class SignatureCheckbox extends Component {
   }
 
   render() {
-    let { formData, schema: { properties }, uiSchema } = this.props;
+    let {
+      formData,
+      schema: { properties },
+      uiSchema,
+    } = this.props;
     const disabled = Boolean(uiSchema["ui:disabled"]);
     let imgSrc = null;
     if (formData !== null && formData !== undefined) {

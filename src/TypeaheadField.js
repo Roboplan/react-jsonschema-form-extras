@@ -85,8 +85,8 @@ function mapEvents(events, { type, properties, items }, mapping) {
     }
     return events;
   } else if (typeof mapping === "string") {
-    return events.map(
-      event => (typeof event === "string" ? event : selectn(mapping, event))
+    return events.map(event =>
+      typeof event === "string" ? event : selectn(mapping, event)
     );
   } else if (typeof mapping === "function") {
     return events.map(event => mapping(event));
@@ -94,7 +94,9 @@ function mapEvents(events, { type, properties, items }, mapping) {
     let defVal = defaultValue(
       properties
         ? properties
-        : items && items.properties ? items.properties : {}
+        : items && items.properties
+        ? items.properties
+        : {}
     );
     let mappedEvents = events.map(event => {
       return mapToObject(event, mapping, defVal);
@@ -234,7 +236,9 @@ class BaseTypeaheadField extends Component {
   };
 
   componentDidMount() {
-    let { uiSchema: { focusOnMount = false } } = this.props;
+    let {
+      uiSchema: { focusOnMount = false },
+    } = this.props;
     if (focusOnMount) {
       this.refs.typeahead.getInstance().focus();
     }
@@ -265,7 +269,11 @@ function isValidFormData(data) {
 export class TypeaheadField extends BaseTypeaheadField {
   constructor(props) {
     super(props);
-    let { schema, uiSchema: { typeahead }, formData } = this.props;
+    let {
+      schema,
+      uiSchema: { typeahead },
+      formData,
+    } = this.props;
 
     this.state = {
       selected: isValidFormData(formData)
@@ -321,7 +329,11 @@ export class AsyncTypeaheadField extends BaseTypeaheadField {
   constructor(props) {
     super(props);
 
-    let { schema, uiSchema: { asyncTypeahead }, formData } = this.props;
+    let {
+      schema,
+      uiSchema: { asyncTypeahead },
+      formData,
+    } = this.props;
 
     this.state = {
       options: [],

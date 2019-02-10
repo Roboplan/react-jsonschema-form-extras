@@ -91,7 +91,8 @@ function actionColumnFrom(
     dataFormat: (cell, row, enumObject, rowIndex, formData, onChange) => (
       <span
         onClick={() =>
-          handleClick(cell, row, enumObject, rowIndex, formData, onChange)}>
+          handleClick(cell, row, enumObject, rowIndex, formData, onChange)
+        }>
         <i
           className={
             row[filterField] || row[filterField] === undefined
@@ -124,7 +125,9 @@ export default function actionHeadersFrom(
   onChange
 ) {
   let { table: { rightActions = [], leftActions = [] } = {} } = uiSchema;
-  let { items: { properties = [] } } = schema;
+  let {
+    items: { properties = [] },
+  } = schema;
 
   let rightColumns = rightActions.map(
     actionToCol(formData, onChange, properties)

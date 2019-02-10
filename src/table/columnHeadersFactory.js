@@ -66,7 +66,9 @@ const toDataFormat = (fieldProp, fieldUIProp, defaultFilterKey) => {
       <div
         className={
           defaultFilterKey
-            ? !row[defaultFilterKey] ? "deleted-row-boolean-column" : ""
+            ? !row[defaultFilterKey]
+              ? "deleted-row-boolean-column"
+              : ""
             : ""
         }
         style={{ textAlign: "right" }}>
@@ -132,9 +134,13 @@ const toEditable = fieldProp => {
 };
 
 const columnHeadersFromSchema = (schema, uiSchema) => {
-  let { items: { properties, defaultFilterKey = false } } = schema;
+  let {
+    items: { properties, defaultFilterKey = false },
+  } = schema;
 
-  let { table: { tableCols, tableConfig = {} } } = uiSchema;
+  let {
+    table: { tableCols, tableConfig = {} },
+  } = uiSchema;
   let schemaCols = Object.keys(properties).map(dataField => {
     let { title } = properties[dataField];
     let editable = toEditable(properties[dataField]);

@@ -15,7 +15,12 @@ export default class InsertModal extends Component {
   }
 
   handleSave = () => {
-    let { formData, schema: { items: { required } } } = this.props;
+    let {
+      formData,
+      schema: {
+        items: { required },
+      },
+    } = this.props;
     if (
       this.body.getFieldValue &&
       this.body.getFieldValue instanceof Function
